@@ -5,6 +5,7 @@
 package forme;
 
 import javax.swing.JOptionPane;
+import konfiguracija.Konfiguracija;
 
 /**
  *
@@ -17,6 +18,7 @@ public class ServerForma extends javax.swing.JFrame {
      */
     public ServerForma() {
         initComponents();
+        postavljanjeMaxBrKlk();
     }
 
     /**
@@ -122,4 +124,9 @@ public class ServerForma extends javax.swing.JFrame {
     private javax.swing.JTextField jTextFieldMaxBrKl;
     private javax.swing.JToggleButton jToggleButtonPokreniServer;
     // End of variables declaration//GEN-END:variables
+
+    private void postavljanjeMaxBrKlk() {
+        String brKl = Konfiguracija.getInstance().getKonfiguracija("max_broj_klijenata");
+        jTextFieldMaxBrKl.setText(brKl);
+    }
 }

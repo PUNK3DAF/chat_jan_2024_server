@@ -7,6 +7,7 @@ package konfiguracija;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.Properties;
 import java.util.logging.Level;
@@ -28,6 +29,7 @@ public class Konfiguracija {
         if (!configFile.exists()) {
             configFile.getParentFile().mkdirs();
             konfiguracija.setProperty("max_broj_klijenata", 5 + "");
+            sacuvajIzmene();
         } else {
             try {
                 FileInputStream fis = new FileInputStream(configFile);
@@ -45,6 +47,24 @@ public class Konfiguracija {
             instance = new Konfiguracija();
         }
         return instance;
+    }
+
+    private void sacuvajIzmene() {
+        try {
+            konfiguracija.store(new FileOutputStream(putanja), null);
+        } catch (FileNotFoundException ex) {
+            Logger.getLogger(Konfiguracija.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (IOException ex) {
+            Logger.getLogger(Konfiguracija.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+
+    public String getKonfiguracija(String key) {
+        return konfiguracija.getProperty(key, "n/a");
+    }
+
+    public void setKonfiguracija(String key, String value) {
+        konfiguracija.setProperty(key, value);
     }
 
 }
