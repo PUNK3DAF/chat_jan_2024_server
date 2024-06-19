@@ -128,5 +128,6 @@ public class ServerForma extends javax.swing.JFrame {
     private void postavljanjeMaxBrKlk() {
         String brKl = Konfiguracija.getInstance().getKonfiguracija("max_broj_klijenata");
         jTextFieldMaxBrKl.setText(brKl);
+        jTextFieldMaxBrKl.setEnabled(false);
     }
 }
